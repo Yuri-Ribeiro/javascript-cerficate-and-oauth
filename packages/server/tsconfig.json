@@ -6,6 +6,6 @@
     "checkJs": false,         
   },
   "include": [
-    "./src/**/*"
+    "."
   ]
 }
