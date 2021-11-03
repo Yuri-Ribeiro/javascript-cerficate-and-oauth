@@ -1,13 +1,8 @@
 import express from 'express'
+import { Certification } from '../controllers'
 
 const routes = express.Router()
 
-routes.get('/', (request, response) => {
-  return response.json({ message: 'Hello World' })
-})
-
-routes.post('/posts', (request, response) => {
-  return response.json({ message: 'New post' })
-})
+routes.post('/emitCertificate', Certification.emitCertificate)
 
 export default routes

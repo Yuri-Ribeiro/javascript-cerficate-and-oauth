@@ -1,0 +1,9 @@
+{
+  "name": "@javascript-cerficate-and-oauth/typings",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.17.7"
+  }
+}
