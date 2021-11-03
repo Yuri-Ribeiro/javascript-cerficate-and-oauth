@@ -4,7 +4,7 @@ import { existsSync } from 'fs'
 
 import { RootCAOptions } from '@javascript-cerficate-and-oauth/typings'
 
-import { MOCKET_ROOT_CA_OPTIONS } from '../mock'
+import { MOCKED_ROOT_CA_OPTIONS } from '../mock'
 
 export const generateRootCA = ({
   path,
@@ -19,10 +19,12 @@ export const generateRootCA = ({
   exec(
     `openssl req -x509 -newkey rsa:4096 -passout pass:${password} -keyout ${path}/cakey.pem -out ${path}/cacert.pem -passin pass:${password} -days 365 -subj "/C=${countryName}/ST=${stateOrProvinceName}/L=${localityName}/OU=${organizationUnitName}/CN=${commonName}/emailAddress=${emailAddress}"`,
     (error, _, stderr) => {
-      if (stderr || error) {
+      if (error) {
         console.log(`Erro ao gerar Root CA: ${stderr ?? error.message}`)
         return
       }
+
+      if (stderr) console.log(`Saída: ${stderr}`)
 
       console.log('Root CA gerado com sucesso!')
     }
@@ -30,9 +32,10 @@ export const generateRootCA = ({
 }
 
 export const checkForRootCA = (): void => {
-  if (!existsSync('./env/rootCA/cakey.pem')) return
+  const rootCAExists = existsSync(`${MOCKED_ROOT_CA_OPTIONS.path}/cacert.pem`)
+  const rootCAKeyExists = existsSync(`${MOCKED_ROOT_CA_OPTIONS.path}/cakey.pem`)
 
-  if (!existsSync('./env/rootCA/cacert.pem')) return
+  if (rootCAExists && rootCAKeyExists) return
 
-  generateRootCA(MOCKET_ROOT_CA_OPTIONS)
+  generateRootCA(MOCKED_ROOT_CA_OPTIONS)
 }
