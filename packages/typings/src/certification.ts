@@ -4,6 +4,7 @@ export interface RootCAOptions {
   countryName: string
   stateOrProvinceName: string
   localityName: string
+  organizationName: string
   organizationUnitName: string
   commonName: string
   emailAddress: string
