@@ -1,13 +1,14 @@
 import { exec } from 'child_process'
 
-import { existsSync } from 'fs'
+import { existsSync, mkdirSync } from 'fs'
 
-import { RootCAOptions } from '@javascript-cerficate-and-oauth/typings'
+import { CertSubjectOptions } from '@javascript-cerficate-and-oauth/typings'
 
 import { MOCKED_ROOT_CA_OPTIONS } from '../mock'
 
+import { ROOT_CA_PATH } from '../src/constants'
+
 export const generateRootCA = ({
-  path,
   password,
   countryName,
   stateOrProvinceName,
@@ -16,12 +17,14 @@ export const generateRootCA = ({
   organizationUnitName,
   commonName,
   emailAddress
-}: RootCAOptions): void => {
+}: CertSubjectOptions): void => {
+  if (!existsSync(ROOT_CA_PATH)) mkdirSync(ROOT_CA_PATH, { recursive: true })
+
   exec(
-    `openssl req -x509 -newkey rsa:4096 -passout pass:${password} -keyout ${path}/cakey.pem -out ${path}/cacert.pem -passin pass:${password} -days 365 -subj "/C=${countryName}/ST=${stateOrProvinceName}/L=${localityName}/O=${organizationName}/OU=${organizationUnitName}/CN=${commonName}/emailAddress=${emailAddress}"`,
+    `openssl req -x509 -newkey rsa:4096 -passout pass:${password} -keyout ${ROOT_CA_PATH}/cakey.pem -out ${ROOT_CA_PATH}/cacert.pem -passin pass:${password} -days 365 -subj "/C=${countryName}/ST=${stateOrProvinceName}/L=${localityName}/O=${organizationName}/OU=${organizationUnitName}/CN=${commonName}/emailAddress=${emailAddress}"`,
     (error, _, stderr) => {
       if (error) {
-        console.log(`Erro ao gerar Root CA: ${stderr ?? error.message}`)
+        console.log(`Erro ao gerar Root CA: ${error.message}`)
         return
       }
 
@@ -33,8 +36,8 @@ export const generateRootCA = ({
 }
 
 export const checkForRootCA = (): void => {
-  const rootCAExists = existsSync(`${MOCKED_ROOT_CA_OPTIONS.path}/cacert.pem`)
-  const rootCAKeyExists = existsSync(`${MOCKED_ROOT_CA_OPTIONS.path}/cakey.pem`)
+  const rootCAExists = existsSync(`${ROOT_CA_PATH}/cacert.pem`)
+  const rootCAKeyExists = existsSync(`${ROOT_CA_PATH}/cakey.pem`)
 
   if (rootCAExists && rootCAKeyExists) return
 

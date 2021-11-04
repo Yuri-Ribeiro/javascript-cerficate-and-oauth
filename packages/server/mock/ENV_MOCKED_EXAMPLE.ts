@@ -1,7 +1,6 @@
-import { RootCAOptions } from '@javascript-cerficate-and-oauth/typings'
+import { CertSubjectOptions } from '@javascript-cerficate-and-oauth/typings'
 
-export const MOCKED_ROOT_CA_OPTIONS: RootCAOptions = {
-  path: './env/rootCA',
+export const MOCKED_ROOT_CA_OPTIONS: CertSubjectOptions = {
   password: '123456',
   countryName: 'BR',
   stateOrProvinceName: 'Ceará',

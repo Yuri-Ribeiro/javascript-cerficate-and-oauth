@@ -1,5 +1,4 @@
-export interface RootCAOptions {
-  path: string
+export interface CertSubjectOptions {
   password: string
   countryName: string
   stateOrProvinceName: string
