@@ -4,9 +4,9 @@ import { existsSync, mkdirSync } from 'fs'
 
 import { CertSubjectOptions } from '@javascript-cerficate-and-oauth/typings'
 
-import { MOCKED_ROOT_CA_OPTIONS } from '../mock'
+import { ROOT_CA_PATH } from '../constants'
 
-import { ROOT_CA_PATH } from '../src/constants'
+import { MOCKED_ROOT_CA_OPTIONS } from '../mock'
 
 export const generateRootCA = ({
   password,

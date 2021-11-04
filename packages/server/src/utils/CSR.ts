@@ -4,7 +4,9 @@ import { existsSync, mkdirSync } from 'fs'
 
 import { CertSubjectOptions } from '@javascript-cerficate-and-oauth/typings'
 
-import { CSR_PATH } from '../src/constants'
+import { CERT_PATH, CSR_PATH, ROOT_CA_PATH } from '../constants'
+
+import { MOCKED_ROOT_CA_OPTIONS } from '../mock'
 
 export const generateCSR = ({
   password,

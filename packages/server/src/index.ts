@@ -1,6 +1,7 @@
 import cors from 'cors'
 import express from 'express'
-import { checkForRootCA } from '../utils'
+import { checkForRootCA } from './utils'
+
 import routes from './routes'
 
 const app = express()
