@@ -34,3 +34,21 @@ export const generateCSR = ({
     }
   )
 }
+
+export const signCSR = (): void => {
+  if (!existsSync(CERT_PATH)) mkdirSync(CERT_PATH, { recursive: true })
+
+  exec(
+    `openssl x509 -req -in ${CSR_PATH}/csr.pem -days 365 -CA ${ROOT_CA_PATH}/cacert.pem -CAkey ${ROOT_CA_PATH}/cakey.pem -passin pass:${MOCKED_ROOT_CA_OPTIONS.password} -CAcreateserial -out ${CERT_PATH}/cert.pem`,
+    (error, _, stderr) => {
+      if (error) {
+        console.log(`Erro ao assinar certificado: ${error.message}`)
+        return
+      }
+
+      if (stderr) console.log(`Saída: ${stderr}`)
+
+      console.log('Certificado assinado com sucesso!')
+    }
+  )
+}
