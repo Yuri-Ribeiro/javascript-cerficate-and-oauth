@@ -1,8 +1,8 @@
 import { Request, Response } from '@javascript-cerficate-and-oauth/typings'
 
-import { CERT_PATH } from '../constants'
+import { CERT_PATH } from '../../constants'
 
-import { generateCSR, signCSR } from '../utils'
+import { generateCSR, signCSR } from '../../utils'
 
 export class Certification {
   static emitCertificateController = async (
