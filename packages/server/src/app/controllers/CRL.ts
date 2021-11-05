@@ -18,11 +18,18 @@ export class CRL {
     const { serialNumber } = req.body
 
     const certificate = await getRepository(Certificate).findOne({
-      serialNumber
+      where: { serialNumber },
+      relations: ['CRLItem']
     })
 
     if (!certificate) {
       res.status(404).send('certificado não identificado')
+
+      return
+    }
+
+    if (certificate.CRLItem) {
+      res.status(400).send('certificado já revogado')
 
       return
     }
@@ -32,7 +39,6 @@ export class CRL {
     const CRLItemToBeSaved = CRLItemRepository.create({
       certificate
     })
-
     await CRLItemRepository.save(CRLItemToBeSaved)
 
     const CRL = await CRLItemRepository.find()

@@ -1,2 +1,2 @@
-export * from './CRL'
 export * from './Certificate'
+export * from './CRLItem'
