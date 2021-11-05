@@ -1,29 +1,10 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn
-} from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
-@Entity('Certificate')
+@Entity('certificate')
 export class Certificate {
   @PrimaryGeneratedColumn()
   id: number
 
   @Column({ unique: true })
   serialNumber: string
-
-  @Column()
-  @CreateDateColumn()
-  createdAt: Date
-
-  @Column()
-  @UpdateDateColumn()
-  updatedAt: Date
-
-  @Column()
-  @DeleteDateColumn()
-  deletedAt: Date
 }

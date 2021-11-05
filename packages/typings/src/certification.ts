@@ -1,4 +1,4 @@
-export interface CertSubjectOptions {
+export interface CertificateSubjectOptions {
   password: string
   countryName: string
   stateOrProvinceName: string

@@ -4,14 +4,14 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --ignore node_modules --transpile-only --no-notify --respawn src/index.ts"
+    "start": "tsnd --ignore node_modules --transpile-only --no-notify --respawn src/server.ts"
   },
   "dependencies": {
+    "better-sqlite3": "^7.4.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "node-forge": "^0.10.0",
     "reflect-metadata": "^0.1.13",
-    "sqlite3": "^5.0.2",
     "typeorm": "^0.2.38"
   },
   "devDependencies": {

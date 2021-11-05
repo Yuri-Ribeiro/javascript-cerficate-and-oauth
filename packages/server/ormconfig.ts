@@ -1,13 +1,13 @@
 const typeORMConnectionOptions = {
   synchronize: true,
-  type: 'sqlite',
+  type: 'better-sqlite3',
   database: 'data/line.sqlite',
 
   entities: ['src/app/entity/**/*.[jt]s'],
 
   cli: { entitiesDir: 'src/app/entity' },
 
-  logging: ['error', 'schema', 'warn'],
+  logging: true,
   logger: 'file'
 }
 

@@ -1,11 +1,10 @@
 import { existsSync, mkdirSync } from 'fs'
 
-import { CertSubjectOptions } from '@javascript-cerficate-and-oauth/typings'
+import { CertificateSubjectOptions } from '@javascript-cerficate-and-oauth/typings'
 
 import { CERT_PATH, CSR_PATH, ROOT_CA_PATH } from '../constants'
 import { MOCKED_ROOT_CA_OPTIONS } from '../mock'
-
-import { exec } from '.'
+import { exec } from '../utils'
 
 export const generateCSR = async (
   fileNameSufix: string,
@@ -18,7 +17,7 @@ export const generateCSR = async (
     organizationUnitName,
     commonName,
     emailAddress
-  }: CertSubjectOptions
+  }: CertificateSubjectOptions
 ): Promise<void> => {
   try {
     if (!existsSync(CSR_PATH)) mkdirSync(CSR_PATH, { recursive: true })

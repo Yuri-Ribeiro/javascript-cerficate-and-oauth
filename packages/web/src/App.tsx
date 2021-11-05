@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import api from '@javascript-cerficate-and-oauth/axios-config'
 
-// import { Container } from './styles';
+import api from './utils/axios'
 
 const App: React.FC = () => {
   useEffect(() => {

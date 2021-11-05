@@ -1,11 +1,13 @@
 import express from 'express'
 
-import { Certification } from '../app/controllers'
+import { Certificate, CRL } from '../app/controllers'
 
 const routes = express.Router()
 
-routes.post('/emitCertificate', Certification.emitCertificateController)
+routes.post('/emitCertificate', Certificate.emitCertificateController)
 
-routes.get('/CRL', Certification.getCRL)
+routes.get('/CRL', CRL.getCRL)
+
+routes.post('/registerToCRL', CRL.registerToCRL)
 
 export default routes
