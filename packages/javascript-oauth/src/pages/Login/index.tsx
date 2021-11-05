@@ -1,20 +1,16 @@
-import { useState } from 'react';
+import { useCallback } from 'react';
 
 import {
-  Checkbox,
   Grid,
+  Button,
   TextField,
-  FormControlLabel,
   Paper,
-  Button
 } from '@material-ui/core';
 
 const LoginPage = () => {
-  const [checked, setChecked] = useState(true);
-
-  const handleChange = (event: any) => {
-    setChecked(event.target.checked);
-  };
+  const loginWithGitHub = useCallback(() => {
+    window.open(`https://github.com/login/oauth/authorize?client_id=a2891c4f7582630a21ae`)
+  }, []);
 
   return (
     <div style={{ padding: 30 }}>
@@ -33,20 +29,10 @@ const LoginPage = () => {
             <TextField label="Password" type={'password'}></TextField>
           </Grid>
           <Grid item xs={12}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={checked}
-                  onChange={handleChange}
-                  // label={'Keep me logged in'}
-                  inputProps={{ 'aria-label': 'primary checkbox' }}
-                />
-              }
-              label="Keep me logged in"
-            />
+            <Button fullWidth> Login </Button>
           </Grid>
           <Grid item xs={12}>
-            <Button fullWidth> Login </Button>
+            <Button fullWidth color="primary" onClick={loginWithGitHub}>Entrar com GitHub</Button>
           </Grid>
         </Grid>
       </Paper>

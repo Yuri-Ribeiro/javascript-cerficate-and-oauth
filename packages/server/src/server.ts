@@ -8,7 +8,7 @@ import { checkForRootCA } from './helpers'
 import routes from './routes'
 
 const app = express()
-const PORT = 4001
+const PORT = 4000
 
 app.use(express.json())
 
