@@ -7,11 +7,13 @@
     "start": "tsnd --ignore node_modules --transpile-only --no-notify --respawn src/server.ts"
   },
   "dependencies": {
+    "@types/superagent": "^4.1.13",
     "better-sqlite3": "^7.4.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "node-forge": "^0.10.0",
     "reflect-metadata": "^0.1.13",
+    "superagent": "^6.1.0",
     "typeorm": "^0.2.38"
   },
   "devDependencies": {
