@@ -2,6 +2,8 @@ import { Request, Response } from '@javascript-cerficate-and-oauth/typings'
 
 import { CERT_PATH } from '../../constants'
 
+import { storeCertificate } from '../../helpers'
+
 import { generateCSR, signCSR } from '../../utils'
 
 export class Certification {
@@ -16,6 +18,8 @@ export class Certification {
     await generateCSR(fileNameSufix, req.body)
 
     await signCSR(fileNameSufix)
+
+    storeCertificate(fileNameSufix)
 
     res.status(200).download(`${CERT_PATH}/cert-${fileNameSufix}.pem`)
   }

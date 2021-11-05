@@ -1,4 +1,5 @@
 import express from 'express'
+
 import { Certification } from '../app/controllers'
 
 const routes = express.Router()

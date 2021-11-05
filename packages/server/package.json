@@ -9,12 +9,14 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "node-forge": "^0.10.0",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.0.2",
     "typeorm": "^0.2.38"
   },
   "devDependencies": {
     "@javascript-cerficate-and-oauth/typings": "*",
+    "@types/node-forge": "^0.10.9",
     "ts-node-dev": "^1.0.0-pre.52"
   }
 }

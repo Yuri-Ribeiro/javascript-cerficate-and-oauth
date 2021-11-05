@@ -9,7 +9,7 @@ import routes from './routes'
 
 const app = express()
 
-const PORT = 4000
+const PORT = 4001
 
 checkForRootCA()
 

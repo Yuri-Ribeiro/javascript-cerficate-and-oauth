@@ -7,13 +7,13 @@ import {
   DeleteDateColumn
 } from 'typeorm'
 
-@Entity('CRLItem')
-export class CRLItem {
+@Entity('Certificate')
+export class Certificate {
   @PrimaryGeneratedColumn()
   id: number
 
   @Column({ unique: true })
-  serial: string
+  serialNumber: string
 
   @Column()
   @CreateDateColumn()
