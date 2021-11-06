@@ -11,9 +11,12 @@ import { getRepository } from 'typeorm'
 import { User } from '../entity/User'
 
 const getUser = async (accessToken): Promise<any> => {
-  return superagent
+  const { body: user } = await superagent
     .get('https://api.github.com/user')
+    .set('User-Agent', 'request')
     .set('Authorization', `token ${accessToken}`)
+
+  return user
 }
 
 export class GitHub {
@@ -41,19 +44,27 @@ export class GitHub {
         const userRepository = getRepository(User)
         const token = result.body.access_token
 
+        console.log('token', token)
+
         const user = userRepository.create({ token })
         await userRepository.save(user)
 
         const users = await userRepository.find()
-        console.log(users)
 
         const foundUser = await getUser(token)
 
         res.send(
-          `TOKEN ${token} SALVO COM SUCESSO NO BANCO
-
-EXEMPLO DE USO COM GITHUB API:
-${foundUser}`
+          `<h3>TOKEN ${token} SALVO COM SUCESSO NO BANCO</h3>
+          </br>
+          <b>Tokens salvos no banco:</b> ${users
+            .map(user => `</br><i>${user.token}</i>`)
+            .join(', ')}
+          </br>
+          </br>
+          </br>
+          <h3>EXEMPLO DE USO FAZENDO REQUISIÇÃO COM TOKEN NO GITHUB API:</h3>${JSON.stringify(
+            foundUser
+          )}`
         )
       })
       .catch(err => {
