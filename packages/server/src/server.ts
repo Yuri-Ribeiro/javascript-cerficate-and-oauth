@@ -7,6 +7,9 @@ import { createConnection } from 'typeorm'
 import { checkForRootCA } from './helpers'
 import routes from './routes'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config()
+
 const app = express()
 const PORT = 4000
 

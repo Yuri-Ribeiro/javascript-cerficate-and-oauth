@@ -10,11 +10,13 @@
     ],
     "nohoist": [
       "**/typeorm/**",
-      "**/typeorm"
+      "**/typeorm",
+      "dotenv"
     ]
   },
   "devDependencies": {
     "@javascript-cerficate-and-oauth/eslint-config": "*",
     "typescript": "^3.9.7"
-  }
+  },
+  "type": "module"
 }

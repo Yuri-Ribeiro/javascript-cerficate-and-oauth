@@ -9,7 +9,7 @@ import {
 
 const LoginPage = () => {
   const loginWithGitHub = useCallback(() => {
-    window.open(`https://github.com/login/oauth/authorize?client_id=a2891c4f7582630a21ae`)
+    window.open(`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}`)
   }, []);
 
   return (

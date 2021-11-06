@@ -43,7 +43,7 @@ Thumbs.db
 
 # enviroments
 **/env
-*.env*
+*.env
 
 # yarn
 **/yarn.lock

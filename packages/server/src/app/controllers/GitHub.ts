@@ -24,6 +24,10 @@ export class GitHub {
     req: Request<CertificateSubjectOptions>,
     res: Response
   ): Promise<void> => {
+    const { CLIENT_ID, CLIENT_SECRET } = process.env
+
+    console.log(CLIENT_ID, CLIENT_SECRET)
+
     const { code } = req.query
 
     if (!code) {
@@ -35,8 +39,8 @@ export class GitHub {
     superagent
       .post('https://github.com/login/oauth/access_token')
       .send({
-        client_id: 'a2891c4f7582630a21ae',
-        client_secret: 'f737feb147684f82d867be22e6295356eddf2c84',
+        client_id: CLIENT_ID,
+        client_secret: CLIENT_SECRET,
         code
       })
       .set('Accept', 'application/json')
